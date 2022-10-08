@@ -1,6 +1,6 @@
 
     const BME280 = require("bme280-sensor");
-    const axios = require("axios");
+    const axios = require("axios").default;
     require('dotenv').config()
 
     // The BME280 constructor options are optional.
