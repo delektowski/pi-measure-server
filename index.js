@@ -46,7 +46,7 @@ function postMeasurements(temperature, humidity, pressure, measurementDate) {
         method: 'post',
         data: {
             query: `mutation {
-                          piMeasurements(temperature: ${temperature}, humidity:${humidity}, pressure: ${pressure}, measurementDate:${measurementDate}) {
+                          saveMeasurements(temperature: ${temperature}, humidity:${humidity}, pressure: ${pressure}, measurementDate:${measurementDate}) {
                                                         code
                                                         message
                                                       }
@@ -56,8 +56,8 @@ function postMeasurements(temperature, humidity, pressure, measurementDate) {
     }).then((result) => {
         console.log(result.data.data)
     }).catch(err => {
-        console.log("err", err.response.data.errors)
+        console.log("err", err.response.data)
     });
 }
 
-setInterval(readSensorData, 5000)
+setInterval(readSensorData, 1800000)
