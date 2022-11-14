@@ -16,7 +16,9 @@
   "dependencies": {
     "axios": "^1.1.0",
     "bme280-sensor": "^0.1.7",
+    "dayjs": "^1.11.6",
     "dotenv": "^16.0.3",
-    "node-raspistill": "^2.0.1"
+    "node-raspistill": "^2.0.1",
+    "shelljs": "^0.8.5"
   }
 }

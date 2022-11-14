@@ -1,5 +1,6 @@
 const BME280 = require("bme280-sensor");
 const axios = require("axios").default;
+const makePhoto = require("./makePhoto");
 require('dotenv').config()
 
 // The BME280 constructor options are optional.
@@ -33,7 +34,6 @@ bme280
     .then(() => {
         console.log("BME280 initialization succeeded");
         readSensorData();
-        // setInterval(readSensorData, 1800000);
     })
     .catch((err) => console.error(`BME280 initialization failed: ${err} `));
 
@@ -61,3 +61,4 @@ function postMeasurements(temperature, humidity, pressure, measurementDate) {
 }
 
 setInterval(readSensorData, 1800000)
+makePhoto()
