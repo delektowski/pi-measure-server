@@ -1,6 +1,6 @@
 const BME280 = require("bme280-sensor");
 const axios = require("axios").default;
-const makePhoto = require("./makePhoto");
+const handlePhoto = require("./handlePhoto");
 require('dotenv').config()
 
 // The BME280 constructor options are optional.
@@ -22,7 +22,7 @@ const readSensorData = async () => {
             measurementDate: new Date(),
         };
         console.log("sensorData", sensorData)
-        postMeasurements(sensorData.temperature, sensorData.humidity, sensorData.pressure, sensorData.measurementDate)
+        saveMeasurements(sensorData.temperature, sensorData.humidity, sensorData.pressure, sensorData.measurementDate)
     } catch (err) {
         console.log("Something went wrong: ", err);
     }
@@ -39,7 +39,7 @@ bme280
 
 
 
-function postMeasurements(temperature, humidity, pressure, measurementDate) {
+function saveMeasurements(temperature, humidity, pressure, measurementDate) {
     measurementDate = new Date(measurementDate).getTime()/1000
     axios({
         url: process.env.GQL_URL,
@@ -61,4 +61,4 @@ function postMeasurements(temperature, humidity, pressure, measurementDate) {
 }
 
 setInterval(readSensorData, 1800000)
-makePhoto()
+handlePhoto()
