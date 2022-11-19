@@ -21,7 +21,7 @@ module.exports = async function handlePhoto() {
       }
     }).then((result) => {
       console.log(result.data.data);
-      setTimeout(handlePhoto, 3000);
+      setTimeout(handlePhoto, 10000);
     }).catch(err => {
       console.log("err", err.response.data);
       savePhotoData()
