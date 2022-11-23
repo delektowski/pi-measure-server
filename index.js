@@ -59,6 +59,6 @@ function saveMeasurements(temperature, humidity, pressure, measurementDate) {
         console.log("err", err.response.data)
     });
 }
-
+readSensorData();
 setInterval(readSensorData, 1800000)
 handlePhoto()
