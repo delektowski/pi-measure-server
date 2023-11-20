@@ -6,7 +6,7 @@ module.exports = async function handlePhoto() {
     const title = dayjs(new Date()).format("YYYY-MM-DD_THH:mm:ss");
 
     function makePhoto() {
-        shell.exec(`raspistill -o /home/mardel/kod/pi-measure-server/pics/img-${title}.jpg -q 90 -w 640 -h 480`, function (code, stdout, stderr) {
+        shell.exec(`raspistill -o /home/pi/kod/pi-measure-server/pics/img-${title}.jpg -q 90 -w 640 -h 480`, function (code, stdout, stderr) {
 
                 if (stderr) {
                     console.log("ERROR:", stderr);
@@ -19,7 +19,7 @@ module.exports = async function handlePhoto() {
     }
 
     function storePhoto() {
-        shell.exec(`scp /home/mardel/kod/pi-measure-server/pics/img-${title}.jpg ${process.env.PICS_SERVER}`, function (code, stdout, stderr) {
+        shell.exec(`scp /home/pi/kod/pi-measure-server/pics/img-${title}.jpg ${process.env.PICS_SERVER}`, function (code, stdout, stderr) {
 
             if (stderr) {
                 console.log("ERROR:", stderr);
@@ -55,7 +55,7 @@ module.exports = async function handlePhoto() {
     }
 
     function removePhoto() {
-        shell.exec(`rm /home/mardel/kod/pi-measure-server/pics/img-${title}.jpg`, function (code, stdout, stderr) {
+        shell.exec(`rm /home/pi/kod/pi-measure-server/pics/img-${title}.jpg`, function (code, stdout, stderr) {
 
             if (stderr) {
                 console.log("ERROR:", stderr);

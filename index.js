@@ -39,15 +39,14 @@ bme280
 
 
 
-function saveMeasurements(temperature, humidity, pressure, measurementDate) {
+function saveMeasurements(temperature, humidity, pressure, measurementDate, measurementTable) {
     measurementDate = new Date(measurementDate).getTime()/1000
-    const measurementTable = 'measurements'
     axios({
         url: process.env.GQL_URL,
         method: 'post',
         data: {
             query: `mutation {
-                          saveMeasurements(temperature: ${temperature}, humidity:${humidity}, pressure: ${pressure}, measurementDate:${measurementDate}, measurementTable: ${measurementTable}) {
+                          saveMeasurements(temperature: ${temperature}, humidity:${humidity}, pressure: ${pressure}, measurementDate:${measurementDate}, measurementTable: "measurements") {
                                                         code
                                                         message
                                                       }
@@ -55,10 +54,11 @@ function saveMeasurements(temperature, humidity, pressure, measurementDate) {
       `
         }
     }).then((result) => {
-        console.log(result.data.data)
+        console.log("Result",JSON.stringify(result.data))
     }).catch(err => {
         console.log("err", err.response.data)
     });
 }
+readSensorData()
 setInterval(readSensorData, 1800000)
 handlePhoto()
