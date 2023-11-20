@@ -41,12 +41,13 @@ bme280
 
 function saveMeasurements(temperature, humidity, pressure, measurementDate) {
     measurementDate = new Date(measurementDate).getTime()/1000
+    const measurementTable = 'measurements'
     axios({
         url: process.env.GQL_URL,
         method: 'post',
         data: {
             query: `mutation {
-                          saveMeasurements(temperature: ${temperature}, humidity:${humidity}, pressure: ${pressure}, measurementDate:${measurementDate}) {
+                          saveMeasurements(temperature: ${temperature}, humidity:${humidity}, pressure: ${pressure}, measurementDate:${measurementDate}, measurementTable: ${measurementTable}) {
                                                         code
                                                         message
                                                       }
